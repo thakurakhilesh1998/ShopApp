@@ -1,13 +1,17 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../model/cartItem.dart';
 class CartProvider with ChangeNotifier
 {
-Map<String,cartItem> items;
+Map<String,cartItem> items={};
 
 Map<String,cartItem> get item{
 return {...items};
+}
+int get quantity{
+return items.length;
 }
 void addCartItem(String productId,String title,double price )
 {
@@ -28,6 +32,7 @@ void addCartItem(String productId,String title,double price )
       quantity: 1),
       );
   }
+  notifyListeners();
 }
 
 }

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shopapp/widgets/badge.dart';
 import 'package:shopapp/widgets/product_grid_view.dart';
+import '../provider/cart_provider.dart';
 enum SelectedValue
 {
   Favourite,
@@ -18,6 +21,16 @@ class _ProjectOverViewState extends State<ProjectOverView> {
  return Scaffold(
       appBar: AppBar(
         actions: <Widget>[
+
+          Consumer<CartProvider>(
+            builder: (context,cartProvider,childs) =>Badge(
+               child: childs,
+                value:'${cartProvider.quantity}',
+            ),
+            child: IconButton(icon: Icon(
+                Icons.shopping_cart),
+                onPressed: (){},),
+          ),
           PopupMenuButton(
             onSelected: (SelectedValue value)
             {
