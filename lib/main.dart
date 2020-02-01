@@ -10,8 +10,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     
     
-    return ChangeNotifierProvider(
-      builder: (ctx) => Products(),
+    return ChangeNotifierProvider.value(
+      // builder: (ctx) => Products(),
+      value: Products(),
           child: MaterialApp(
         title:"Shop App",
         theme: ThemeData(
