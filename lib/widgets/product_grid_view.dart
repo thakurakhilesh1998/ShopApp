@@ -12,12 +12,10 @@ class ProductGridVew extends StatelessWidget {
         itemCount: providerData.getItems().length,
         itemBuilder:(ctx,i)
         {
-          return ProductTile(
-            providerData.getItems()[i].id,
-            providerData.getItems()[i].title,
-            providerData.getItems()[i].imageUrl,
-
-          );
+          return ChangeNotifierProvider(
+            builder: (ctx)=>providerData.getItems()[i],
+            child: ProductTile()
+            );
         },
       gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
