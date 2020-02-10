@@ -12,6 +12,44 @@ class ProductOverviewscreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(loadedData.title),
       ),
+      body: Column(
+        children: <Widget>[
+        Container(
+          margin: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: Colors.black,
+              width: 3,
+              style:BorderStyle.solid),
+              borderRadius: BorderRadius.circular(6),
+          ),
+          height:250,
+          width: double.infinity,
+         child: Image.network(loadedData.imageUrl,
+         fit: BoxFit.cover,
+         colorBlendMode: BlendMode.plus,),
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Text('Price ₹ ${loadedData.price}',
+        style: TextStyle(fontSize:20,
+        fontWeight:FontWeight.bold,
+        color: Colors.black),),
+        SizedBox(
+          height:10,
+        ),
+        Container(
+          margin: EdgeInsets.all(10),
+          alignment: Alignment.topLeft,
+          child: Text(
+            loadedData.description,
+            softWrap: true,
+            style: TextStyle(fontSize:20,
+            color:Colors.red),
+          ),
+        ),
+      ],),
     );
   }
 }

@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:shopapp/widgets/badge.dart';
 import 'package:shopapp/widgets/product_grid_view.dart';
 import '../provider/cart_provider.dart';
+import './cart_screen.dart';
+import '../widgets/app_drawer.dart';
 enum SelectedValue
 {
   Favourite,
@@ -19,6 +21,7 @@ class _ProjectOverViewState extends State<ProjectOverView> {
   @override
   Widget build(BuildContext context) {
  return Scaffold(
+  drawer: AppDrawer(),
       appBar: AppBar(
         actions: <Widget>[
 
@@ -29,7 +32,9 @@ class _ProjectOverViewState extends State<ProjectOverView> {
             ),
             child: IconButton(icon: Icon(
                 Icons.shopping_cart),
-                onPressed: (){},),
+                onPressed: (){
+                  Navigator.of(context).pushNamed(CartScreen.cartScreenRoute);
+                },),
           ),
           PopupMenuButton(
             onSelected: (SelectedValue value)

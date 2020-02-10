@@ -32,7 +32,7 @@ class Products with ChangeNotifier
       id: 'p5',
       title: 'HeadPhone',
       description: 'Music can not be this way',
-      price: 149.99,
+      price: 19.99,
       imageUrl:
           'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cast-Iron-Pan.jpg/1024px-Cast-Iron-Pan.jpg',
     ),

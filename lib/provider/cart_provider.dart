@@ -1,5 +1,4 @@
 import 'dart:collection';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../model/cartItem.dart';
@@ -12,6 +11,16 @@ return {...items};
 }
 int get quantity{
 return items.length;
+}
+double get price
+{
+  var total=0.0;
+
+items.forEach((key,cartItem)
+{
+return total+=cartItem.price * cartItem.quantity; 
+});
+return total;
 }
 void addCartItem(String productId,String title,double price )
 {
@@ -34,5 +43,32 @@ void addCartItem(String productId,String title,double price )
   }
   notifyListeners();
 }
-
+void onRemoveCart(String productId)
+{
+items.remove(productId);
+notifyListeners();
+}
+void clear()
+{
+  items={};
+notifyListeners();
+}
+void undoAddToCart(String productId)
+{
+if(!items.containsKey(productId))
+{
+  return;
+}
+if(items[productId].quantity>1)
+{
+  items.update(productId,(existing)=>cartItem(id: existing.id, 
+  title: existing.title, 
+  price: existing.price, 
+  quantity: existing.quantity-1));
+}
+else{
+items.remove(productId);
+}
+notifyListeners();
+}
 }

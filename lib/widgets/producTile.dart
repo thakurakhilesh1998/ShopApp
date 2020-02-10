@@ -37,12 +37,26 @@ class ProductTile extends StatelessWidget {
               trailing: IconButton(icon: Icon(Icons.shopping_cart,
               color:Theme.of(context).accentColor,),
               onPressed: (){
-                  cart
-                  .addCartItem(
+
+                  cart.addCartItem(
                      productInfo.id,
                      productInfo.title,
                      productInfo.price);
-              },),
+                     Scaffold.of(context).removeCurrentSnackBar();
+                     Scaffold.of(context).showSnackBar(
+
+                       SnackBar(
+                        action: SnackBarAction(onPressed: ()
+                        {
+                            cart.undoAddToCart(productInfo.id);
+                        },
+                        label: "UNDO",),
+                        content: Text('Item Added to cart!'),
+                        duration:Duration(seconds:2),
+                        ),
+                        );
+              },
+              ),
             ),
         ),
 
