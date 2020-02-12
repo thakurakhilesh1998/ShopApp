@@ -1,8 +1,11 @@
+import 'dart:convert';
 import '../model/product.dart';
 import 'package:flutter/material.dart';
-
+import 'package:http/http.dart' as http;
+import '../model/product_dummy.dart';
 class Products with ChangeNotifier
 {
+  List<ProductDummy> addItems=[];
   List<Product> items=[
     Product(
       id: 'p1',
@@ -68,6 +71,22 @@ class Products with ChangeNotifier
   }
   void addItem(Product productData)
   {
+    addItems=[ProductDummy(
+           title: productData.title,
+          description: productData.description,
+           price:productData.price.toString(),
+            imageUrl:productData.imageUrl),];
+    const URL= "https://shopapp-f9eb4.firebaseio.com/Product.json"; 
+     http.post(URL,
+     body:json.encode(
+       {
+    
+          'title':productData.title,
+          'price':productData.price,
+           'description':productData.description,
+           'imageUrl':productData.imageUrl,
+       }
+     ) );
     final product=Product(
       id: DateTime.now().toString(),
       title: productData.title,
@@ -75,6 +94,7 @@ class Products with ChangeNotifier
       imageUrl: productData.imageUrl,
       price: productData.price);
     items.add(product);
+     
     notifyListeners();
   }
   void updateProduct(String productId,Product newProduct)

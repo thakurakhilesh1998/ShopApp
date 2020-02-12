@@ -94,8 +94,6 @@ else
 {
 Provider.of<Products>(context).addItem(editable);
 }
-Navigator.of(context).pop();
-
 }
   @override
   Widget build(BuildContext context) {
