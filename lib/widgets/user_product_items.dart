@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../screens/edit_add.dart';
+import '../provider/products_package.dart';
 class UserProductItems extends StatelessWidget {
+  final String id;
   final String title;
   final String imageUrl;
-  UserProductItems(this.imageUrl,this.title);
+  UserProductItems(this.id,this.imageUrl,this.title);
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,11 +26,15 @@ class UserProductItems extends StatelessWidget {
                   icon: Icon(Icons.edit,
                   color: Theme.of(context).primaryColor,
                   ),
-                  onPressed: (){}),
+                  onPressed: (){
+                    Navigator.of(context).pushNamed(EditAdd.EditAddRoute,arguments: id);
+                  }),
                 IconButton(
                   icon: Icon(Icons.delete,
                   color: Theme.of(context).errorColor,
-                  ), onPressed: (){})  
+                  ), onPressed: (){
+                    Provider.of<Products>(context).onDeleteProduct(id);
+                  })  
               ],
             ),
           ),

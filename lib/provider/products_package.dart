@@ -66,8 +66,33 @@ class Products with ChangeNotifier
     })
    );
   }
-  void addItem()
+  void addItem(Product productData)
   {
+    final product=Product(
+      id: DateTime.now().toString(),
+      title: productData.title,
+      description: productData.description,
+      imageUrl: productData.imageUrl,
+      price: productData.price);
+    items.add(product);
+    notifyListeners();
+  }
+  void updateProduct(String productId,Product newProduct)
+  {
+    final index=items.indexWhere((result)=>result.id==productId);
+    if(index>=0)
+    {
+      items[index]=newProduct;
+      notifyListeners();
+    }
+    else
+    {
+      //do nothing
+    }
+  }
+  void onDeleteProduct(String id)
+  {
+    items.removeWhere((result)=>result.id==id);
     notifyListeners();
   }
 

@@ -3,6 +3,7 @@ import '../provider/products_package.dart';
 import 'package:provider/provider.dart';
 import '../widgets/user_product_items.dart';
 import '../widgets/app_drawer.dart';
+import '../screens/edit_add.dart';
 class UserProductScreen extends StatelessWidget {
   static const USER_PRODUCT_ROUTE="/userproductroute";
   @override
@@ -16,13 +17,14 @@ class UserProductScreen extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.add), onPressed: ()
           {
-
+            Navigator.of(context).pushNamed(EditAdd.EditAddRoute);
           }),
         ],
       ),
       body: ListView.builder(
         itemBuilder:(ctx,i)=>
         UserProductItems(
+          products.getItems()[i].id,
           products.getItems()[i].imageUrl,
           products.getItems()[i].title,
           ),
